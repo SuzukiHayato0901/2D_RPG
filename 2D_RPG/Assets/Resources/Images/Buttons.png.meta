@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4fd89e0a8e5733a4695f402a3eb63cb5
+guid: c648aed24521ba84491410f337dacc54
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -49,7 +49,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 32, y: 32, z: 32, w: 32}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -123,253 +123,253 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pipo-charachip021e_0
+      name: Buttons_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 96
-        width: 32
-        height: 32
+        x: 357
+        y: 2433
+        width: 766
+        height: 767
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d2b56a9c1430d1d409e25f95a596f102
-      internalID: 1541662786
+      spriteID: 2bafd97c306b7e848bb5f7d28c64f500
+      internalID: -574987359
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pipo-charachip021e_1
+      name: Buttons_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 96
-        width: 32
-        height: 32
+        x: 1525
+        y: 2433
+        width: 767
+        height: 767
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d0552dc0fe619b4f85a9d627c9d8b64
-      internalID: -1370697662
+      spriteID: 4bef9f4a4e1e3d04da98e4b28b02da3a
+      internalID: -1337510479
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pipo-charachip021e_2
+      name: Buttons_2
       rect:
         serializedVersion: 2
-        x: 64
-        y: 96
-        width: 32
-        height: 32
+        x: 2693
+        y: 2433
+        width: 767
+        height: 767
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2cfd1910f2d14674f969d7cb7f77a0ae
-      internalID: -1903999391
+      spriteID: 810b219d04bb18f44aa05ccd6405ce9e
+      internalID: -555964982
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pipo-charachip021e_3
+      name: Buttons_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
-        width: 32
-        height: 32
+        x: 3862
+        y: 2433
+        width: 766
+        height: 767
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a07c1bb5cd5a0bc4c8e7a27fe93d72d9
-      internalID: -1340487844
+      spriteID: f56e47c7c42062e449a546a452dcea80
+      internalID: 481687422
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pipo-charachip021e_4
+      name: Buttons_4
       rect:
         serializedVersion: 2
-        x: 32
-        y: 64
-        width: 32
-        height: 32
+        x: 281
+        y: 1559
+        width: 915
+        height: 460
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34c0a0cbfb6f3c145bb00eef9b558969
-      internalID: 507269712
+      spriteID: 1cd226560ffeec94b9b6fec91165b6f7
+      internalID: -745948533
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pipo-charachip021e_5
+      name: Buttons_5
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
-        width: 32
-        height: 32
+        x: 1452
+        y: 1559
+        width: 913
+        height: 460
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a112e54b9a0d174f9e88ab3f983ec5e
-      internalID: 758859954
+      spriteID: bdb9f381ac5914645948d445a119ca80
+      internalID: -1340011922
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pipo-charachip021e_6
+      name: Buttons_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
+        x: 2620
+        y: 1559
+        width: 913
+        height: 460
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72914c5d9a60a1d45a367d61f5a68c24
-      internalID: -1969908708
+      spriteID: a39d653632638884fb4f6f389f787800
+      internalID: -1582754621
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pipo-charachip021e_7
+      name: Buttons_7
       rect:
         serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
+        x: 3789
+        y: 1559
+        width: 912
+        height: 460
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a4015ebdcd496c45b20c59c1a881dbd
-      internalID: -612866415
+      spriteID: d65dc43f8a85e0948a3e72c90901acd6
+      internalID: 1749256017
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pipo-charachip021e_8
+      name: Buttons_8
       rect:
         serializedVersion: 2
-        x: 64
-        y: 32
-        width: 32
-        height: 32
+        x: 340
+        y: 332
+        width: 799
+        height: 801
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 282d7b1c7424aef4b93ba1760a8509e3
-      internalID: -932590566
+      spriteID: 99dd5810a885adc409a3c60cd240b0e8
+      internalID: 1370085594
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pipo-charachip021e_9
+      name: Buttons_9
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
+        x: 1508
+        y: 332
+        width: 801
+        height: 801
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ed174761f10dbf42a58dcb4de8b5369
-      internalID: -759591644
+      spriteID: 78091c468a65a5e46a5d7afd3e49316d
+      internalID: -1714087458
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pipo-charachip021e_10
+      name: Buttons_10
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
+        x: 2676
+        y: 332
+        width: 801
+        height: 801
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc2d1afaa29b04c4593d5610458343b4
-      internalID: 910379604
+      spriteID: 865426fc5bcd5d5468c8b7dad2af62a5
+      internalID: -1447384578
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pipo-charachip021e_11
+      name: Buttons_11
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
+        x: 3845
+        y: 332
+        width: 800
+        height: 801
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa34b2d2f4ad4b343aecad27bbd1ac0a
-      internalID: 777842984
+      spriteID: cb85d78220549114e9880baf067eb1ee
+      internalID: 1485521384
       vertices: []
       indices: 
       edges: []
@@ -378,25 +378,25 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      pipo-charachip021e_0: 1541662786
-      pipo-charachip021e_1: -1370697662
-      pipo-charachip021e_10: 910379604
-      pipo-charachip021e_11: 777842984
-      pipo-charachip021e_2: -1903999391
-      pipo-charachip021e_3: -1340487844
-      pipo-charachip021e_4: 507269712
-      pipo-charachip021e_5: 758859954
-      pipo-charachip021e_6: -1969908708
-      pipo-charachip021e_7: -612866415
-      pipo-charachip021e_8: -932590566
-      pipo-charachip021e_9: -759591644
+      Buttons_0: -574987359
+      Buttons_1: -1337510479
+      Buttons_10: -1447384578
+      Buttons_11: 1485521384
+      Buttons_2: -555964982
+      Buttons_3: 481687422
+      Buttons_4: -745948533
+      Buttons_5: -1340011922
+      Buttons_6: -1582754621
+      Buttons_7: 1749256017
+      Buttons_8: 1370085594
+      Buttons_9: -1714087458
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
