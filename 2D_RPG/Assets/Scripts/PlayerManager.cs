@@ -18,7 +18,7 @@ public class PlayerManager : MonoBehaviour
     }
 
     #region アクションベント
-    void OnMouvePerformrd(InputAction.CallbackContext context)
+    void OnMovePerformed(InputAction.CallbackContext context)
     {
         // 入力時の操作
         moveInput  = context.ReadValue<Vector2>();
@@ -38,20 +38,26 @@ public class PlayerManager : MonoBehaviour
         controls = new PlayerAction();
     }
 
+    /// <summary>
+    /// 入力受付開始
+    /// </summary>
     private void OnEnable()
     {
         controls.Player.Move.Enable();
 
-        controls.Player.Move.performed += OnMouvePerformrd;
+        controls.Player.Move.performed += OnMovePerformed;
         controls.Player.Move.canceled += OnMouveCanceled;
     }
 
+    /// <summary>
+    /// イベント解除
+    /// </summary>
     private void OnDisable()
     {
-        controls.Player.Move.performed -= OnMouvePerformrd;
+        controls.Player.Move.performed -= OnMovePerformed;
         controls.Player.Move.canceled -= OnMouveCanceled;
 
-        controls.Player.Move.Disable();
+        controls.Player.Move.Disable();     // 入力受付終了
     }
     #endregion
 
