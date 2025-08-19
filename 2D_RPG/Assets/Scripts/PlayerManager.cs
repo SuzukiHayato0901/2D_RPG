@@ -9,12 +9,27 @@ public class PlayerManager : MonoBehaviour
     PlayerAction controls;          // アクションクラス
     Vector2 moveInput;              // 入力された方向
     [SerializeField] float speed;
+
+    Animator animator;
     #endregion
 
     void Move()
     {
         var move = new Vector3(moveInput.x, moveInput.y, 0f) * Time.deltaTime * speed;
         transform.Translate(move);
+        bool IsMoving = moveInput.sqrMagnitude > 0f;
+
+        if (moveInput.x != 0)
+        {
+            moveInput.y = 0f;
+        }
+
+        if (moveInput.x != 0 || moveInput.y != 0)
+        {
+            animator.SetFloat("InputX", moveInput.x);
+            animator.SetFloat("InputY", moveInput.y);
+        }
+        animator.SetBool("IsMoving", IsMoving);
     }
 
     #region アクションベント
@@ -36,6 +51,9 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         controls = new PlayerAction();
+
+        // animatorの取得
+        animator = GetComponent<Animator>();
     }
 
     /// <summary>
