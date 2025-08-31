@@ -1,41 +1,51 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class ButtonManager : MonoBehaviour
 {
-    public Text mainText;              // 選択結果表示用
-    public GameObject buttonPrefab;    // ボタンのプレハブ
-    public GameObject buttonSelection; // 配置する親オブジェクト
+    [Header("UI設定")]
+    public GameObject buttonPrefab;
+    public Transform buttonContainer;
+    public Font customFont;
 
-    // コマンドの種類をenumで定義
-    public enum CommandType
-    {
-        たたかう,
-        にげる
-    }
+    private Action<string> onCommandSelected;
 
-    void Start()
+    private string[] commands = { "たたかう",  "にげる" };
+
+    public void GenerateCommandButtons(Action<string> callback)
     {
-        // enum の全要素を列挙
-        foreach (CommandType cmd in Enum.GetValues(typeof(CommandType)))
+        onCommandSelected = callback;
+
+        // 既存ボタン削除
+        foreach (Transform child in buttonContainer)
         {
-            // ボタン生成
-            GameObject newButton = Instantiate(buttonPrefab, buttonSelection.transform, false);
+            Destroy(child.gameObject);
+        }
 
-            // ラベル設定（enumの値を文字列化）
-            Text label = newButton.GetComponentInChildren<Text>();
-            label.text = cmd.ToString();
+        // コマンドごとにボタン生成
+        foreach (string command in commands)
+        {
+            string cmd = command; // キャプチャ対策
+            GameObject buttonObj = Instantiate(buttonPrefab, buttonContainer);
+            Button button = buttonObj.GetComponent<Button>();
+            Text buttonText = buttonObj.GetComponentInChildren<Text>();
+            buttonText.text = cmd;
+            if (customFont) buttonText.font = customFont;
 
-            // クリック時イベント登録
-            newButton.GetComponent<Button>().onClick.AddListener(() => OnCommandSelected(cmd));
+            button.onClick.AddListener(() => OnCommandSelected(cmd));
         }
     }
 
-    void OnCommandSelected(CommandType command)
+    private void OnCommandSelected(string commandName)
     {
-        mainText.text = command.ToString() + " を選びました";
+        onCommandSelected?.Invoke(commandName);
+
+        // 全ボタンを無効化
+        foreach (Transform child in buttonContainer)
+        {
+            Button btn = child.GetComponent<Button>();
+            if (btn != null) btn.interactable = false;
+        }
     }
 }

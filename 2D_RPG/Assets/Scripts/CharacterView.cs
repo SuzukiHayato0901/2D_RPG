@@ -21,7 +21,7 @@ public class CharacterView : MonoBehaviour
 
         // UIèâä˙âª
         nameText.text = Actor.Name;
-        portraitImage.sprite = characterData.portrait;
+        //portraitImage.sprite = characterData.portrait;
         hpText.text = $"HP: {Actor.Hp.Value} / {Actor.MaxHp}";
 
 
@@ -31,15 +31,5 @@ public class CharacterView : MonoBehaviour
             hpText.text = $"HP: {hp} / {Actor.MaxHp}";
         })
             .AddTo(this);
-    }
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
     }
 }
