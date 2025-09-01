@@ -9,12 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4be153200c286444d89b8fc114e3de64, type: 3}
-  m_Name: Enemy
+  m_Script: {fileID: 11500000, guid: 111af60372cc27245959c485e19c9d20, type: 3}
+  m_Name: ButtnData
   m_EditorClassIdentifier: 
-  characterName: Boos
-  maxHp: 100
-  atk: 90
-  def: 10
-  speed: 10
-  portrait: {fileID: 21300000, guid: 552aba5531445cf4e99a90936e0664ca, type: 3}
+  label: "\u305F\u305F\u304B\u3046"
+  subCommands:
+  - {fileID: 11400000, guid: ee74231b87bab55439f34f581c17a3a3, type: 2}

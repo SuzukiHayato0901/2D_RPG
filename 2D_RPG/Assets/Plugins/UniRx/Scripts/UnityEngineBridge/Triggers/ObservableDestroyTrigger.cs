@@ -1,5 +1,7 @@
-﻿using System; // require keep for Windows Universal App
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace UniRx.Triggers
 {
@@ -10,15 +12,15 @@ namespace UniRx.Triggers
         Subject<Unit> onDestroy;
         CompositeDisposable disposablesOnDestroy;
 
-        [Obsolete("Internal Use.")]
+        [Obsolete("内部使用のみ。")]
         internal bool IsMonitoredActivate { get; set; }
 
         public bool IsActivated { get; private set; }
 
         /// <summary>
-        /// Check called OnDestroy.
-        /// This property does not guarantees GameObject was destroyed,
-        /// when gameObject is deactive, does not raise OnDestroy.
+        /// OnDestroy が呼び出されたかどうかを確認します。
+        /// このプロパティは GameObject が破棄されたことを保証するものではありません。
+        /// GameObject が非アクティブの場合、OnDestroy は呼び出されません。
         /// </summary>
         public bool IsCalledOnDestroy { get { return calledDestroy; } }
 
@@ -27,7 +29,9 @@ namespace UniRx.Triggers
             IsActivated = true;
         }
 
-        /// <summary>This function is called when the MonoBehaviour will be destroyed.</summary>
+        /// <summary>
+        /// MonoBehaviour が破棄されるときに呼び出されます。
+        /// </summary>
         void OnDestroy()
         {
             if (!calledDestroy)
@@ -38,7 +42,9 @@ namespace UniRx.Triggers
             }
         }
 
-        /// <summary>This function is called when the MonoBehaviour will be destroyed.</summary>
+        /// <summary>
+        /// OnDestroy を強制的に呼び出します。このメソッドは内部で使用されます。
+        /// </summary>
         public IObservable<Unit> OnDestroyAsObservable()
         {
             if (this == null) return Observable.Return(Unit.Default);
@@ -46,7 +52,9 @@ namespace UniRx.Triggers
             return onDestroy ?? (onDestroy = new Subject<Unit>());
         }
 
-        /// <summary>Invoke OnDestroy, this method is used on internal.</summary>
+        /// <summary>
+        /// OnDestroy 時に破棄する IDisposable を追加します。
+        /// </summary>
         public void ForceRaiseOnDestroy()
         {
             OnDestroy();

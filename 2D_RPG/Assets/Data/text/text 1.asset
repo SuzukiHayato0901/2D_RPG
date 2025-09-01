@@ -9,12 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4be153200c286444d89b8fc114e3de64, type: 3}
-  m_Name: Player
+  m_Script: {fileID: 11500000, guid: 88327769ee098aa4a842785167070f6c, type: 3}
+  m_Name: text 1
   m_EditorClassIdentifier: 
-  characterName: "\u30D7\u30EC\u30A4\u30E4\u30FC"
-  maxHp: 100
-  atk: 20
-  def: 40
-  speed: 30
-  portrait: {fileID: 0}
+  messageTemplate: "{0} \u306B {1} \u30C0\u30E1\u30FC\u30B8\uFF01"
