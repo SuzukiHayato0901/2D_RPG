@@ -4,23 +4,23 @@ using System;
 using System.Collections.Generic;
 
 /// <summary>
-/// 階層型のコマンドボタンを生成・管理するクラス
-/// CommandData[] を元にボタンを動的生成
-/// 子コマンドがある場合は階層遷移
-/// 戻るボタンで上位階層に戻れる
+/// ScriptableObjectベースの階層型コマンドボタン生成クラス
+/// - CommandData[] を元にボタンを動的生成
+/// - 子コマンドがある場合は階層遷移
+/// - 戻るボタンで上位階層に戻れる
 /// </summary>
 public class ButtonManager : MonoBehaviour
 {
     [Header("UI設定")]
-    public GameObject buttonPrefab;   // ボタンのプレハブ
+    public GameObject buttonPrefab;   // ボタンのプレハブ（Text付き）
     public Transform buttonContainer; // ボタンを並べる親オブジェクト
-    public Font customFont;           // 任意のフォント
+    public Font customFont;           // 任意のフォント（日本語対応など）
 
     [Header("コマンド階層データ")]
-    [SerializeField] private CommandData[] rootCommands; // 最上位階層のコマンド群
+    [SerializeField] private CommandData[] rootCommands; // 最上位階層のコマンド群（SO参照）
 
-    private Action<string> onCommandSelected; // コマンド確定時のコールバック
-    private Stack<CommandData[]> menuStack = new Stack<CommandData[]>(); // 階層履歴
+    private Action<string> onCommandSelected; // コマンド確定時に呼び出すコールバック
+    private Stack<CommandData[]> menuStack = new Stack<CommandData[]>(); // 階層履歴（戻る用）
 
     /// <summary>
     /// コマンドボタン生成のエントリーポイント
@@ -30,23 +30,26 @@ public class ButtonManager : MonoBehaviour
     {
         onCommandSelected = callback;
 
-        menuStack.Clear();          // 前ターンの履歴をクリア
+        // ターン開始時に階層履歴をリセット
+        menuStack.Clear();
+
         ShowCommands(rootCommands); // ルート階層を表示
     }
 
     /// <summary>
     /// 指定された階層のコマンドを表示
     /// </summary>
+    /// <param name="commands">表示するコマンド配列</param>
     private void ShowCommands(CommandData[] commands)
     {
-        // 既存ボタンを全削除
+        // 既存ボタンを全削除（階層遷移時に前の階層のボタンを消す）
         foreach (Transform child in buttonContainer)
             Destroy(child.gameObject);
 
-        // 戻るボタン（ルート階層以外）
+        // 戻るボタン（ルート階層以外の場合のみ表示）
         if (menuStack.Count > 0)
         {
-            CreateButton("戻る", () =>
+            CreateButton("＜ 戻る", () =>
             {
                 // 1つ上の階層に戻る
                 ShowCommands(menuStack.Pop());
@@ -76,6 +79,8 @@ public class ButtonManager : MonoBehaviour
     /// <summary>
     /// ボタン生成共通処理
     /// </summary>
+    /// <param name="label">ボタンに表示する文字列</param>
+    /// <param name="onClick">クリック時の処理</param>
     private void CreateButton(string label, Action onClick)
     {
         // プレハブからボタン生成

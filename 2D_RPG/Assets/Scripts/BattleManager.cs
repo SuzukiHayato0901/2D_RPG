@@ -1,111 +1,134 @@
 using UnityEngine;
+using UnityEngine.UI; 
 using Cysharp.Threading.Tasks;
 using System;
-using UnityEngine.UI;
 
 /// <summary>
-/// ターン制バトルの進行管理クラス。
-/// - CharacterDataのステータスを使ってダメージ計算
-/// - BattleMessageDataのテンプレートを使って文章生成
-/// - BattleLogManagerで複数行履歴表示
+/// ターン制バトルを管理するクラス（ボタンあり＋ターン開始メッセージ）
+/// - ターン開始時にDebug.LogとUIテキスト両方にメッセージを表示
+/// - 「にげる」は即終了
+/// - HPが残っている限りループ
 /// </summary>
 public class BattleManager : MonoBehaviour
 {
-    [Header("キャラデータ")]
-    [SerializeField] private CharacterData playerData; // プレイヤーのステータス
-    [SerializeField] private CharacterData enemyData;  // 敵のステータス
+    [Header("キャラビュー")]
+    [SerializeField] private CharacterView playerView;         // プレイヤーUI（HPテキスト付き）
+    [SerializeField] private EnemyCharacterView enemyView;     // 敵UI（立ち絵のみ）
 
     [Header("UI")]
-    [SerializeField] private ButtonManager buttonManager; // コマンド入力UI
-    [SerializeField] private BattleLogManager logManager; // ログ表示管理
+    [SerializeField] private ButtonManager buttonManager;      // コマンドボタン生成・管理
+    [SerializeField] private Text battleLogText;               // 標準Textコンポーネント
 
-    [Header("メッセージデータ")]
-    [SerializeField] private BattleMessageData selectCommandMsg; // "{0} は {1} を選択！"
-    [SerializeField] private BattleMessageData damageMsg;        // "{0} に {1} ダメージ！"
-    [SerializeField] private BattleMessageData enemyTurnMsg;     // "敵のターン…"
-
-
-
-    private bool isBattleActive;
+    private bool isBattleActive; // バトル中かどうかのフラグ
 
     private async void Start()
     {
-        isBattleActive = true;
-        await logManager.AddLogAsync("バトル開始！");
+        // Inspectorでの設定漏れチェック
+        if (playerView == null || enemyView == null || buttonManager == null)
+        {
+            Debug.LogError("BattleManagerの参照が設定されていません。Inspectorを確認してください。");
+            return;
+        }
 
-        // バトルループ
+        isBattleActive = true;
+        await ShowLogAsync("バトル開始！");
+
+        // バトルループ（プレイヤー→敵→プレイヤー…）
         while (isBattleActive)
         {
+            // プレイヤーのターン
             await PlayerTurnAsync();
-            if (!enemyData.IsAlive)
+
+            // 「にげる」などでバトル終了フラグが立ったら即終了
+            if (!isBattleActive) break;
+
+            // 敵が倒れたら終了
+            if (!enemyView.Actor.IsAlive)
             {
-                await logManager.AddLogAsync($"{enemyData.characterName} を倒した！");
+                await ShowLogAsync($"{enemyView.Actor.Name} を倒した！");
                 break;
             }
 
+            // 敵のターン
             await EnemyTurnAsync();
-            if (!playerData.IsAlive)
+
+            // プレイヤーが倒れたら終了
+            if (!isBattleActive) break;
+            if (!playerView.Actor.IsAlive)
             {
-                await logManager.AddLogAsync($"{playerData.characterName} が倒された…");
+                await ShowLogAsync($"{playerView.Actor.Name} が倒された…");
                 break;
             }
         }
 
-        await logManager.AddLogAsync("バトル終了！");
+        await ShowLogAsync("バトル終了！");
         isBattleActive = false;
     }
 
     /// <summary>
     /// プレイヤーのターン処理
+    /// - ターン開始メッセージを表示
+    /// - ボタン入力を待って行動
+    /// - 「にげる」は即終了
     /// </summary>
     private async UniTask PlayerTurnAsync()
     {
-        await logManager.AddLogAsync($"{playerData.characterName} のターン");
+        // ターン開始メッセージ
+        await ShowLogAsync($"{playerView.Actor.Name} のターン");
 
-        // コマンド入力待ち
+        // プレイヤーの入力待ち
         var tcs = new UniTaskCompletionSource<string>();
         buttonManager.GenerateCommandButtons(cmd => tcs.TrySetResult(cmd));
 
+        // 選択が終わるまで待機
         string selectedCommand = await tcs.Task;
-        await logManager.AddLogAsync(string.Format(selectCommandMsg.messageTemplate, playerData.characterName, selectedCommand));
+        await ShowLogAsync($"{selectedCommand} を選択！");
 
-        // コマンド別処理
+        // コマンドに応じた処理
         if (selectedCommand == "たたかう")
         {
-            int damage = CalcDamage(playerData, enemyData);
-            enemyData.TakeDamage(damage);
-            await logManager.AddLogAsync(string.Format(damageMsg.messageTemplate, enemyData.characterName, damage));
+            int damage = playerView.Actor.Atk;
+            enemyView.Actor.TakeDamage(damage);
+            await ShowLogAsync($"{enemyView.Actor.Name} に {damage} ダメージ！");
         }
         else if (selectedCommand == "まほう")
         {
-            int damage = CalcDamage(playerData, enemyData) + 5;
-            enemyData.TakeDamage(damage);
-            await logManager.AddLogAsync(string.Format(damageMsg.messageTemplate, enemyData.characterName, damage));
+            int damage = playerView.Actor.Atk + 5;
+            enemyView.Actor.TakeDamage(damage);
+            await ShowLogAsync($"{enemyView.Actor.Name} に {damage} ダメージ！（魔法）");
         }
         else if (selectedCommand == "にげる")
         {
-            await logManager.AddLogAsync("逃げた！");
-            isBattleActive = false;
+            await ShowLogAsync("逃げた！");
+            isBattleActive = false; // 即終了
+            return; // 敵ターンに行かず抜ける
         }
     }
 
     /// <summary>
     /// 敵のターン処理
+    /// - ターン開始メッセージを表示
+    /// - 単純に攻撃してダメージを与える
     /// </summary>
     private async UniTask EnemyTurnAsync()
     {
-        await logManager.AddLogAsync(enemyTurnMsg.messageTemplate);
+        // ターン開始メッセージ
+        await ShowLogAsync($"{enemyView.Actor.Name} のターン", 1f);
 
-        int damage = CalcDamage(enemyData, playerData);
-        playerData.TakeDamage(damage);
-        await logManager.AddLogAsync(string.Format(damageMsg.messageTemplate, playerData.characterName, damage));
+        int damage = enemyView.Actor.Atk;
+        playerView.Actor.TakeDamage(damage);
+        await ShowLogAsync($"{playerView.Actor.Name} は {damage} ダメージを受けた！");
     }
 
     /// <summary>
-    /// ダメージ計算（最低1ダメージ保証）
+    /// ログをUIとコンソール両方に出す
+    /// - UIテキストが設定されていればUIにも表示
+    /// - waitSecondsで表示後の待機時間を調整
     /// </summary>
-    private int CalcDamage(CharacterData attacker, CharacterData defender)
+    private async UniTask ShowLogAsync(string message, float waitSeconds = 1f)
     {
-        return Mathf.Max(1, attacker.atk - defender.def + UnityEngine.Random.Range(-2, 3));
+        Debug.Log(message); // コンソール出力
+        if (battleLogText != null) battleLogText.text = message; // 標準Textに表示
+        await UniTask.Delay(System.TimeSpan.FromSeconds(waitSeconds));
     }
 }
