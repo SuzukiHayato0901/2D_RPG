@@ -44,9 +44,6 @@ public class PlayerManager : MonoBehaviour
     // ˆÚ“®ˆ—
     private void Move()
     {
-        // ‰E¶—Dæ‚ÅY“ü—Í‚ğ–³Œø‰»
-        if (moveInput.x != 0) moveInput.y = 0;
-
         // ˆÚ“®—\’èˆÊ’u‚ğŒvZ
         Vector3 targetPos = transform.position + new Vector3(moveInput.x, moveInput.y, 0f) * speed * Time.deltaTime;
 
