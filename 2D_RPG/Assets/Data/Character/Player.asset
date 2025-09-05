@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: "\u30D7\u30EC\u30A4\u30E4\u30FC"
   maxHp: 100
-  atk: 50
+  atk: 70
   def: 40
   speed: 30
   portrait: {fileID: 0}

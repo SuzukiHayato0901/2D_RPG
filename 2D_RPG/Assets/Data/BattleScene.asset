@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c49195e382e202d4b8fd446d7e57db8d, type: 3}
   m_Name: BattleScene
   m_EditorClassIdentifier: 
-  sceneAsset: {fileID: 102900000, guid: 8c5c678e2854a0c43aa926f323354418, type: 3}
+  triggerTag: Player
   sceneName: BattleScene
+  sceneAsset: {fileID: 102900000, guid: 8c5c678e2854a0c43aa926f323354418, type: 3}

@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 /// <summary>
-/// ScriptableObjectからActorを生成するユーティリティ
+/// CharacterDataからActorを生成するユーティリティ
 /// </summary>
 public static class ActorFactory
 {

@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c49195e382e202d4b8fd446d7e57db8d, type: 3}
   m_Name: DungeonScene
   m_EditorClassIdentifier: 
-  sceneAsset: {fileID: 102900000, guid: 042822c0597c7dc45a0bf55a408c0a88, type: 3}
+  triggerTag: Player
   sceneName: DungeonScene
+  sceneAsset: {fileID: 102900000, guid: 042822c0597c7dc45a0bf55a408c0a88, type: 3}

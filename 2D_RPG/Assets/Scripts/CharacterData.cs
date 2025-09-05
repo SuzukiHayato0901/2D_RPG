@@ -1,8 +1,8 @@
 using UnityEngine;
 
 /// <summary>
-/// キャラクターのステータスとバトル用の基本処理を定義するデータクラス
-/// インスペクターで設定可能
+/// キャラクターの初期ステータスを保持するデータクラス（ScriptableObject）
+/// バトル中の処理はActorに委ねる
 /// </summary>
 [CreateAssetMenu(fileName = "CharacterData", menuName = "RPG/キャラクターデータ")]
 public class CharacterData : ScriptableObject
@@ -15,29 +15,5 @@ public class CharacterData : ScriptableObject
     public int speed;            // 素早さ
 
     [Header("見た目")]
-    public Sprite portrait;      // 立ち絵
-
-    // 現在HP（バトル中に変動）
-    [HideInInspector] public int currentHp;
-
-    /// <summary>
-    /// 生存判定（HPが0より大きければ生存）
-    /// </summary>
-    public bool IsAlive => currentHp > 0;
-
-    /// <summary>
-    /// ダメージを受けてHPを減らす（最低0まで）
-    /// </summary>
-    public void TakeDamage(int damage)
-    {
-        currentHp = Mathf.Max(0, currentHp - damage);
-    }
-
-    /// <summary>
-    /// HPを全回復（バトル開始時などに使用）
-    /// </summary>
-    public void HealFull()
-    {
-        currentHp = maxHp;
-    }
+    public Sprite portrait;      // 立ち絵（UI用）
 }

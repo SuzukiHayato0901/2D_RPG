@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be153200c286444d89b8fc114e3de64, type: 3}
   m_Name: Enemy
   m_EditorClassIdentifier: 
-  characterName: Boos
-  maxHp: 100
-  atk: 49
-  def: 10
-  speed: 10
+  characterName: Boss
+  maxHp: 50
+  atk: 30
+  def: 0
+  speed: 0
   portrait: {fileID: 21300000, guid: 552aba5531445cf4e99a90936e0664ca, type: 3}
